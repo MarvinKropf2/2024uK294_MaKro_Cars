@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "src/assets/Components/Organism/AddCar.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
