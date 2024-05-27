@@ -1,10 +1,11 @@
-import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-export default function HomeButton() {
-  return (
-    <Button variant="normal" color="secondary" component={Link} to="/car">
-      Go Home
-    </Button>
-  );
-}
+const HomeButton = () => (
+  <Button variant="contained" color="primary" component={Link} to="/car">
+    Home
+  </Button>
+);
+
+export default HomeButton;

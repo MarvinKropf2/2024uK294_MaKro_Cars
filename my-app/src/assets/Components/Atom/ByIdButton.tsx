@@ -1,13 +1,15 @@
-import { Link } from "react-router-dom";
-import { IconButton } from "@mui/material";
-import * as Mui from '@material-ui/core';
+import React from 'react';
+import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-export default function ByIdButton({ carId }) {
-  return (
-   
-      <IconButton component={Link} to={`/car/${carId}`}>
-        <Mui.InfoIcon />
-      </IconButton>
-    
-  );
+interface ByIdButtonProps {
+  carId: string;
 }
+
+const ByIdButton: React.FC<ByIdButtonProps> = ({ carId }) => (
+  <Button variant="contained" color="primary" component={Link} to={`/car/${carId}`}>
+    View Car
+  </Button>
+);
+
+export default ByIdButton;

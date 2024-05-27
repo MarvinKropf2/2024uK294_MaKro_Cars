@@ -1,14 +1,15 @@
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-import { IconButton } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-
-export default function EditCarButton({ carId }) {
-  return (
-  
-      <IconButton component={Link} to={`/update/${carId}`}>
-        <EditIcon />
-      </IconButton>
-  
-  );
+interface EditCarButtonProps {
+  carId: string;
 }
+
+const EditCarButton: React.FC<EditCarButtonProps> = ({ carId }) => (
+  <Button variant="contained" color="secondary" component={Link} to={`/update/${carId}`}>
+    Edit Car
+  </Button>
+);
+
+export default EditCarButton;

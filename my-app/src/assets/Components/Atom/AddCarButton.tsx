@@ -1,17 +1,11 @@
-import { Link } from "react-router-dom";
-import * as Mui from '@material-ui/core';
-import Fab from "@mui/material/Fab";
+import React from 'react';
+import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-export default function AddCarButton() {
-  return (
-    <Fab
-      size="medium"
-      color="secondary"
-      aria-label="add"
-      component={Link}
-      to="/post"
-    >
-      <Mui.AddIcon />
-    </Fab>
-  );
-}
+const AddCarButton = () => (
+  <Button variant="contained" color="primary" component={Link} to="/post">
+    Add Car
+  </Button>
+);
+
+export default AddCarButton;
