@@ -1,7 +1,8 @@
 import Navbar from "../Molecules/Navbar";
-import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import { Button, Typography } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import { Button } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import CarService from "../Molecules/Table";
@@ -16,6 +17,14 @@ function CreateCarPage() {
       alert("Creating car was successful.");
     } catch (error) {
       alert("Error creating a car!");
+    }
+  };
+
+  const handleYear = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    if (/^[0-9-]*$/.test(value)) {
+      setYear(value);
     }
   };
 
@@ -41,7 +50,7 @@ function CreateCarPage() {
             id="margin-normal"
             label="Year"
             value={year}
-            onChange={(e) => setYear(e.target.value)}
+            onChange={handleYear}
             variant="standard"
             required
           />

@@ -35,7 +35,6 @@ function DetailedCar() {
         <Grid item xs={6}>
           <Typography gutterBottom variant="h5" component="div">
             <TextField
-              id="outlined-required-read-only-input"
               label="Carname"
               value={name}
               InputProps={{
@@ -45,7 +44,6 @@ function DetailedCar() {
           </Typography>
           <Typography variant="body2" color="text.secondary">
             <TextField
-              id="outlined-required-read-only-input"
               label="Year"
               value={year}
               InputProps={{
