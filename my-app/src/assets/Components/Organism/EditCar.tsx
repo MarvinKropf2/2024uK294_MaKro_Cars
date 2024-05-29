@@ -2,71 +2,78 @@ import Navbar from "../Molecules/Navbar";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import { Button, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import CarService from "../../service/CarsDataService";
+import CarService from "../Molecules/Table";
 
-function EditCar() {
-  const { carId } = useParams(); // Gets carId from URL params
+function EditCarPage() {
+  const { carId } = useParams();
   const [name, setName] = useState("");
   const [year, setYear] = useState("");
 
   useEffect(() => {
-    // Function to load data from car with the selected carId
     const fetchData = async () => {
       try {
         const carData = await CarService().getCarById(carId);
         setName(carData.Name);
         setYear(carData.Year);
       } catch (error) {
-        alert("Error fetching car data.");
+        alert("Id was not found.");
       }
     };
 
     fetchData();
   }, [carId]);
 
-  const updateOnClickHandler = async () => {
+  const handleUpdateCar = async () => {
     try {
       await CarService().updateCar(carId, name, year);
-      alert("Updating car was successful.");
+      alert("Update successful.");
     } catch (error) {
-      alert("Error updating a car");
+      alert("Error updating the car.");
     }
   };
+
+  const handleYearChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (/^[0-9-]*$/.test(value)) {
+      setYear(value);
+    }
+  };
+
   return (
     <>
       <Navbar />
       <Typography>
-        <h1>Update a car</h1>
+        <h1>Update car data</h1>
       </Typography>
 
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          <Typography>
-            <TextField
-              id="margin-normal"
-              label="Carname"
-              value={name}
-              onChange={(e) => setName(e.target.value)} // Rendered the whole site and checks if something changed, if so then it sets the new data
-              variant="standard"
-            />
-            <br />
-            <TextField
-              id="margin-normal"
-              label="Year"
-              value={year}
-              onChange={(e) => setYear(e.target.value)}
-              variant="standard"
-            />
-          </Typography>
+          <TextField
+            id="margin-normal"
+            label="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            variant="standard"
+            required
+          />
+          <br />
+          <TextField
+            id="margin-normal"
+            label="Year"
+            value={year}
+            onChange={handleYearChange}
+            variant="standard"
+            required
+          />
           <Button
             variant="contained"
-            onClick={updateOnClickHandler}
+            onClick={handleUpdateCar}
             component={Link}
             to="/car"
           >
-            Update car
+            Update
           </Button>
         </Grid>
       </Grid>
@@ -74,4 +81,4 @@ function EditCar() {
   );
 }
 
-export default EditCar;
+export default EditCarPage;

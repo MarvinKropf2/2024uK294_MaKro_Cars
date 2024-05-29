@@ -20,6 +20,7 @@ const Tablelist: React.FC<TablelistProps> = ({ cars, handleDeleteCar }) => (
     <Table>
       <TableHead>
         <TableRow>
+          <TableCell>ID</TableCell> {/* Add ID column */}
           <TableCell>Name</TableCell>
           <TableCell>Year</TableCell>
           <TableCell>Actions</TableCell>
@@ -28,6 +29,7 @@ const Tablelist: React.FC<TablelistProps> = ({ cars, handleDeleteCar }) => (
       <TableBody>
         {cars.map((car) => (
           <TableRow key={car.id}>
+            <TableCell>{car.id}</TableCell> {/* Show ID */}
             <TableCell>{car.Name}</TableCell>
             <TableCell>{car.Year}</TableCell>
             <TableCell>

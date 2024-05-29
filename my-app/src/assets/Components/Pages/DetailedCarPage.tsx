@@ -37,6 +37,16 @@ function DetailedCarPage() {
           <Typography gutterBottom variant="h5" component="div">
             <TextField
               id="outlined-required-read-only-input"
+              label="ID"
+              value={carId}
+              InputProps={{
+                readOnly: true,
+              }}
+            />
+          </Typography>
+          <Typography gutterBottom variant="h5" component="div">
+            <TextField
+              id="outlined-required-read-only-input"
               label="Carname"
               value={name}
               InputProps={{

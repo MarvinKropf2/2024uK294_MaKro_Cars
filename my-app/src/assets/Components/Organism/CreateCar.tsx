@@ -1,13 +1,12 @@
-//Create car
 import Navbar from "../Molecules/Navbar";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import { Button, Typography } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import CarService from "../../service/CarsDataService";
+import CarService from "../Molecules/Table";
 
-function CreateCar() {
+function CreateCarPage() {
   const [name, setName] = useState("");
   const [year, setYear] = useState("");
 
@@ -20,6 +19,13 @@ function CreateCar() {
     }
   };
 
+  const handleYearChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (/^[0-9-]*$/.test(value)) {
+      setYear(value);
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -29,25 +35,23 @@ function CreateCar() {
 
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          <Typography>
-            <TextField
-              id="margin-normal"
-              label="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              variant="standard"
-              required
-            />
-            <br />
-            <TextField
-              id="margin-normal"
-              label="Year"
-              value={year}
-              onChange={(e) => setYear(e.target.value)}
-              variant="standard"
-              required
-            />
-          </Typography>
+          <TextField
+            id="margin-normal"
+            label="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            variant="standard"
+            required
+          />
+          <br />
+          <TextField
+            id="margin-normal"
+            label="Year"
+            value={year}
+            onChange={handleYearChange}
+            variant="standard"
+            required
+          />
           <Button
             variant="contained"
             onClick={handleCreateCar}
@@ -62,4 +66,4 @@ function CreateCar() {
   );
 }
 
-export default CreateCar;
+export default CreateCarPage;
