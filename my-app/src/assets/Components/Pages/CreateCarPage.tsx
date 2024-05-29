@@ -10,19 +10,23 @@ import CarService from "../Molecules/Table";
 function CreateCarPage() {
   const [name, setName] = useState("");
   const [year, setYear] = useState("");
+  const [error, setError] = useState("");
 
   const handleCreateCar = async () => {
     try {
-      await CarService().createCar(name, year);
-      alert("Creating car was successful.");
+      if (name && year) {
+        await CarService().createCar(name, year);
+        alert("Creating car was successful.");
+      } else {
+        setError("Please provide both name and year.");
+      }
     } catch (error) {
       alert("Error creating a car!");
     }
   };
 
-  const handleYear = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleYearChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-
     if (/^[0-9-]*$/.test(value)) {
       setYear(value);
     }
@@ -50,7 +54,7 @@ function CreateCarPage() {
             id="margin-normal"
             label="Year"
             value={year}
-            onChange={handleYear}
+            onChange={handleYearChange}
             variant="standard"
             required
           />
@@ -62,6 +66,7 @@ function CreateCarPage() {
           >
             Create
           </Button>
+          {error && <Typography color="error">{error}</Typography>}
         </Grid>
       </Grid>
     </>
